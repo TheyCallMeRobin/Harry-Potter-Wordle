@@ -34,9 +34,10 @@ public class WordleGame {
         over = false;
     }
 
-    String guess(String guess) {
+    String guess(String guess) throws InvalidInputException {
         if (guess.length() != answer.length()) {
-            return "Guess must be" + answer.length() + " characters long.";
+            InvalidInputException e = new InvalidInputException("Guess must be " + answer.length() + " characters long.");
+            throw e;
         }
         tries--;
         String[] result = new String[answer.length()];
@@ -50,10 +51,10 @@ public class WordleGame {
 
         // check for green
         for (int i = 0; i < guess.length(); i++) {
-           if (guess.charAt(i) == answer.charAt(i)) {
-               // its green!
-               result[i]=ANSI_GREEN;
-           }
+            if (guess.charAt(i) == answer.charAt(i)) {
+                // its green!
+                result[i]=ANSI_GREEN;
+            }
         }
         // check for yellow
         for (int i = 0; i < guess.length(); i++) {
