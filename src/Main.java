@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         try {
-            String randomAnswer = choose(new File("C:\\Users\\rcw81\\Desktop\\Udemy Files\\cmps-280---06---harry-potter-wordle-w0731389\\src\\database.txt"));
+            String randomAnswer = choose(new File("src/database.txt"));
             WordleGame game = new WordleGame(randomAnswer);
             while (!game.isOver()) {
                 System.out.print("Guess the wordle (upper case letter only, please): ");
@@ -20,9 +20,13 @@ public class Main {
                 }
                 System.out.println(g);
             }
+            //Prints correct answer in blue when the game is over
+            if (game.isOver()){
+                System.out.println("\u001B[34m" + randomAnswer + "\u001B[0m");
+            }
             sc.close();
         } catch (FileNotFoundException e){
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
